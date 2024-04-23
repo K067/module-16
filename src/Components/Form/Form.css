@@ -3,13 +3,24 @@ input {
     background: none;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+p {
+    margin: 0;
+    font-size: 12px;
+    position: absolute;
+}
+
 input:last-child {
     cursor: pointer;
 }
 
-form {
+.input-group {
     display: flex;
-    gap: 15px;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
 }
