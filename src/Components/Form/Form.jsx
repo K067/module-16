@@ -5,12 +5,14 @@ export const Form = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors }
     } = useForm();
 
     return (
         <form onSubmit={handleSubmit(data => {
             console.log(data);
+            reset();
         })}>
             <div className='input-group'>
                 <div>
@@ -30,8 +32,20 @@ export const Form = () => {
                 </div>
             </div>
             <div className='input-group'>
-                <input {...register('email', { required: 'Es foraasd' })} type="email" placeholder="Email" />
-                <input {...register('address', { required: 'Es foraasd' })} type="text" placeholder="Address" />
+                <div>
+                    <input {...register('email', {
+                        required: 'Es foraasd',
+                        pattern: {
+                            value: /\S+@\S+\.\S+/,
+                            message: 'Unkorrekt verd'
+                        }
+                    })} type="email" placeholder="Email" />
+                    <p>{errors.email?.message}</p>
+                </div>
+                <div>
+                    <input {...register('address', { required: 'Es foraasd' })} type="text" placeholder="Address" />
+                    <p>{errors.address?.message}</p>
+                </div>
             </div>
             <input type="submit" />
         </form>
